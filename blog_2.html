@@ -18,6 +18,24 @@
   <link rel="stylesheet" type="text/css" href="css/darkMode.css" />
   <link rel="stylesheet" type="text/css" href="css/rtl.css" />
   <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+  <style>
+    .home-button {
+        padding: 10px 25px;
+        background-color: transparent;
+        color: white;
+        border: 2px solid white;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
+    
+    .home-button:hover {
+        background-color: white;
+        color: black;
+    }
+    </style>
 </head>
 <body class="dark">
   <div class="waxon_tm_preloader">
@@ -40,14 +58,17 @@
             <div class="links">
               <ul class="anchor_nav">
                 <li class="current">
-                  <a href="https://nirajpandav.github.io/nirajpandav">
+                  <!-- <a href="https://nirajpandav.github.io/nirajpandav">
                     <span class="first">
                       Back
                     </span>
                     <span class="second">
                       Back
                     </span>
-                  </a>
+                  </a> -->
+                  <button class="home-button" onclick="window.location.href='https://nirajpandav.github.io/nirajpandav'">
+                    Home
+                </button>
                 </li>
               </ul>
             </div>
