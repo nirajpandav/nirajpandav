@@ -18,7 +18,29 @@
   <link rel="stylesheet" type="text/css" href="css/darkMode.css" />
   <link rel="stylesheet" type="text/css" href="css/rtl.css" />
   <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+
+  <!-- For adjusting blog thubnail size -->
+<style>
+  #blog .news_inner ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    gap: 30px; /* space between items */
+  }
+
+  #blog .news_inner ul li {
+    flex: 0 0 calc(33.333% - 20px); /* 3 in a row */
+    box-sizing: border-box;
+  }
+</style>
 </head>
+
+
+
 <body class="dark">
   <div class="waxon_tm_preloader">
     <div class="spinner_wrap">
@@ -175,14 +197,20 @@
               <span>
                 Quality Analyst @ EA Games x Codemasters
               </span>
+              <div class="waxon_tm_down" data-skin="dark" data-position="">
+                <div class="line_wrapper">
+                  <div class="line">
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="waxon_tm_down" data-skin="dark" data-position="">
+          <!-- <div class="waxon_tm_down" data-skin="dark" data-position="">
             <div class="line_wrapper">
               <div class="line">
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
