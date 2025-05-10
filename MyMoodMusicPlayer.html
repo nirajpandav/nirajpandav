@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mood Music Player</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+
+    body {
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  padding: 50px;
+  transition: background 0.4s ease;
+  color: #333;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+#msg {
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+select {
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+#playerContainer {
+  margin-top: 30px;
+}
+
+  </style>
+</head>
+<body>
+  <h1>Pick a Mood</h1>
+  <p id="msg">Pick a mood and enjoy </p>
+
+  <select id="moodSelect">
+    <option value="">-- Choose a mood --</option>
+    <option value="happy">Happy</option>
+    <option value="romantic">Romantic</option>
+    <option value="chill">Chill</option>
+    <option value="sad">Sad</option>
+    <option value="excited">Excited</option>
+  </select>
+
+  <button id="nextBtn" style="display: none;">Next Song </button>
+
+  <div id="playerContainer"></div>
+ <footer class="footer"><p>Made with <a style="color: red;">&#10084<a></p>
+    </footer><p style="position: absolute; color: #9999a5; margin-left: 10px;">&copy; Niraj Pandav</p>	
+</body>
+
+<script>
+const moodSelect = document.getElementById("moodSelect");
+const playerContainer = document.getElementById("playerContainer");
+const nextBtn = document.getElementById("nextBtn");
+
+const moodSongs = {
+  happy: [
+    "https://open.spotify.com/embed/track/3KkXRkHbMCARz0aVfEt68P",  // Sunflower
+    "https://open.spotify.com/embed/track/0VjIjW4GlUZAMYd2vXMi3b",  // Blinding Lights
+    "https://open.spotify.com/embed/track/5HCyWlXZPP0y6Gqq8TgA20",  // Levitating
+    "https://open.spotify.com/embed/track/4uLU6hMCjMI75M1A2tKUQC"   // Uptown Funk
+  ],
+
+  romantic: [
+    "https://open.spotify.com/embed/track/1Y3LN4zO1Edc2EluIoSPJN",  // Until I Found You
+    "https://open.spotify.com/embed/track/3U4isOIWM3VvDubwSI3y7a",  // All of Me
+    "https://open.spotify.com/embed/track/0tgVpDi06FyKpA1z0VMD4v",  // Perfect
+    "https://open.spotify.com/embed/track/1HNkqx9Ahdgi1Ixy2xkKkL"   // Just the Way You Are 
+  ],
+
+  chill: [
+    "https://open.spotify.com/embed/track/6kkwzB6hXLIONkEk9JciA6",  // Weightless
+    "https://open.spotify.com/embed/track/4otxan7rHkXYlHwJwl7e6I",  // Lofi Hip Hop Radio
+    "https://open.spotify.com/embed/track/4jsVLYWHeoEt8UxxFWrWCH",  // Coffee Breath
+    "https://open.spotify.com/embed/track/6TqXcAFInzjp0bODyvrWEq"   // Talk
+  ],
+
+  sad: [
+    "https://open.spotify.com/embed/track/2pUpNOgJBIBCcjyQZQ00qU",  // Let Her Go
+    "https://open.spotify.com/embed/track/16RGeJwEoSAoTP3P1A6nC0",  // Shape of You 
+    "https://open.spotify.com/embed/track/0nJW01T7XtvILxQgC5J7Wh",  // When I Was Your Ma
+    "https://open.spotify.com/embed/track/4G92yYrUs0cvY7G41YRI0z"   // Jealous
+  ],
+
+  excited: [
+    "https://open.spotify.com/embed/track/3AJwUDP919kvQ9QcozQPxg",  // Blinding Lights 
+    "https://open.spotify.com/embed/track/4uLU6hMCjMI75M1A2tKUQC",  // Uptown Funk 
+    "https://open.spotify.com/embed/track/5KawlOMHjWeUjQtnuRs22c",  // Can’t Stop the Feeling 
+    "https://open.spotify.com/embed/track/2aibwv5hGXSgw7Yru8IYTO"   // Don’t Start Now 
+  ]
+};
+
+
+const moodStyles = {
+  happy: { bg: "#FFFBAC"},
+  romantic: { bg: "#FFE4E1"},
+  chill: { bg: "#D6F5F2" },
+  sad: { bg: "#D4D4D4" },
+  excited: { bg: "#FFD580" }
+};
+
+let currentMood = "";
+let currentIndex = 0;
+
+function showSong(mood, index) {
+  const url = moodSongs[mood][index];
+  const { bg } = moodStyles[mood];
+
+  document.body.style.background = bg;
+  document.querySelector("h1").textContent = `Mood: ${mood.toUpperCase()} `;
+    playerContainer.innerHTML = `<iframe style="border-radius:12px" src="${url}"
+     width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+    loading="lazy"></iframe>`
+
+}
+
+moodSelect.addEventListener("change", () => {
+  currentMood = moodSelect.value;
+  currentIndex = 0;
+
+  if (moodSongs[currentMood]) {
+    showSong(currentMood, currentIndex);
+    nextBtn.style.display = "inline-block";
+  } else {
+    playerContainer.innerHTML = "";
+    nextBtn.style.display = "none";
+  }
+});
+
+nextBtn.addEventListener("click", () => {
+  currentIndex = (currentIndex + 1) % moodSongs[currentMood].length;
+  showSong(currentMood, currentIndex);
+});
+</script>
+</html>
