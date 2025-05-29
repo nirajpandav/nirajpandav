@@ -72,6 +72,112 @@
     flex: 0 0 calc(33.333% - 20px); /* 3 in a row */
     box-sizing: border-box;
   }
+
+
+  .tree-container {
+      display: flex;
+      justify-content: center;
+      overflow-x: auto;
+      padding: 50px 0;
+    }
+
+    .tree-node {
+      text-align: center;
+      position: relative;
+    }
+
+    .company-node {
+      padding: 12px 24px;
+      border-radius: 10px;
+      color: white;
+      font-weight: bold;
+      font-size: 1em;
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .ea {
+      background-color: #000000;
+    }
+    .ea:hover {
+      
+      transform: scale(1.09);
+    }
+
+    .codemasters {
+      background-color: #000000;
+    }
+    .codemasters:hover {
+      transform: scale(1.09);
+    }
+
+
+    .role-branch {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.5s ease, opacity 0.5s ease;
+    }
+
+    .tree-node:hover .role-branch {
+      max-height: 1000px;
+      opacity: 1;
+    }
+
+    .role-item {
+      
+      padding: 12px;
+      animation: fadeInUp 0.5s ease forwards;
+    }
+
+    .role-item strong {
+      display: block;
+      color: #FFFFFF;
+    }
+
+    .role-item small {
+      color: #c3b4b4;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        transform: translateY(10px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Optional scrollbar styling */
+    .tree-container::-webkit-scrollbar {
+      height: 5px;
+    }
+
+    .tree-container::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 2px;
+    }
+
+    .tree-node {
+  text-align: center;
+  position: relative;
+  padding-left: 40px; /* shift right */
+}
+
+.tree-node:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  top: -5px;
+  right: -30px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #ffffff;
+}
+  
+
 </style>
 </head>
 
@@ -268,13 +374,16 @@
               </span>
             </div>
             <div class="text">
-              <p>
-                Hi! I’m a Quality Analyst with 6+ years of experience ensuring that games meet the highest standards before they reach players. Obsessed with quality and driven by precision, I bring a keen eye for detail and a methodical approach to testing—breaking things so players don’t have to.
+  <p>
+    Hi! I’m a Quality Analyst with <span id="total-exp"></span> of experience ensuring that games meet the highest standards before they reach players. Obsessed with quality and driven by precision, I bring a keen eye for detail and a methodical approach to testing—breaking things so players don’t have to.
 
-At EA Games India Pvt Ltd, I focus on delivering smooth, reliable, and polished gameplay experiences. With a background in Electronics and Telecommunication Engineering from Savitribai Phule Pune University, I combine technical expertise with sharp analytical skills to uncover hidden bugs and fine-tune mechanics. My goal? To help shape every game into its best version before it reaches the world.
-              </p>
-            </div>
-            <div class="waxon_tm_button" data-position="left">
+    At EA Games India Pvt Ltd, I focus on delivering smooth, reliable, and polished gameplay experiences. With a background in Electronics and Telecommunication Engineering from Savitribai Phule Pune University, I combine technical expertise with sharp analytical skills to uncover hidden bugs and fine-tune mechanics. My goal? To help shape every game into its best version before it reaches the world.
+  </p>
+</div>
+
+
+            
+            <!-- <div class="waxon_tm_button" data-position="left">
               <a href="img/resume/NirajPandavQA_Profile.pdf" target="_blank" rel="noreferrer noopener"
               role="button" download="NirajPandavCV">
                 <span>
@@ -283,10 +392,62 @@ At EA Games India Pvt Ltd, I focus on delivering smooth, reliable, and polished 
                 
               </a>
               
-            </div>
+            </div> -->
+            
+            
           </div>
+
+          
         </div>
-      </div>
+              
+ 
+
+</div>
+<div class="container">
+
+  <div class="experience_tree">
+                <div class="tree-container">
+                  <h4 style="color: #ffffff; padding-top: 10px;">Work Experience:</h4>
+                  <!-- Codemasters Branch -->
+                  <div class="tree-node">
+                    <div class="company-node codemasters">CODEMASTERS</div>
+                    <div class="connector"></div>
+                    <div class="role-branch">
+                      <div class="role-item">
+                        <strong>QA Test Engineer - J2</strong>
+                        <small>Feb 2020 – Aug 2022 · 2 yrs 6 mos</small>
+                      </div>
+                      <div class="role-item">
+                        <strong>QA Test Engineer - J1</strong>
+                        <small>Apr 2019 – Oct 2019 · 0 yrs 7 mos</small>
+                      </div>
+                      
+                    </div>
+                  </div>
+
+                  <!-- EA Branch -->
+                  <div class="tree-node">
+                    <div class="company-node ea">ELECTRONIC ARTS</div>
+                    <div class="connector"></div>
+                    <div class="role-branch">
+                      <div class="role-item">
+                        <strong>Quality Analyst</strong>
+                         <small>Jul 2024 – Present · <span id="ea-months"></span></small>
+
+                      </div>
+                      <div class="role-item">
+                        <strong>Senior QA Tester</strong>
+                        <small>Jan 2023 – Jul 2024 · 2 yrs 5 mos</small>
+                      </div>
+                      <div class="role-item">
+                        <strong>QA Tester II</strong>
+                        <small>Aug 2022 – Jan 2023 · 6 mos</small>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+</div>
     </div>
     <!-- <div class="waxon_tm_service">
       <div class="container">
@@ -1022,6 +1183,55 @@ At EA Games India Pvt Ltd, I focus on delivering smooth, reliable, and polished 
   <script src="js/init.js">
   </script>
   <script src="js/sendEmail.js"></script>
+
+    <script>
+  function calculateMonths(startDateStr, elementId) {
+    const startDate = new Date(startDateStr);
+    const today = new Date();
+    
+    let months = (today.getFullYear() - startDate.getFullYear()) * 12;
+    months += today.getMonth() - startDate.getMonth();
+
+    if (today.getDate() < startDate.getDate()) {
+      months -= 1;
+    }
+
+    document.getElementById(elementId).textContent = `${months} mos`;
+  }
+
+  // Example usage
+  calculateMonths("2024-07-01", "ea-months");
+</script>
+
+<script>
+  function calculateExperienceWithBonus(startDateStr, elementId, bonusMonths = 0) {
+    const startDate = new Date(startDateStr);
+    const today = new Date();
+
+    let months = (today.getFullYear() - startDate.getFullYear()) * 12;
+    months += today.getMonth() - startDate.getMonth();
+
+    if (today.getDate() < startDate.getDate()) {
+      months -= 1;
+    }
+
+    months += bonusMonths;
+
+    const years = Math.floor(months / 12);
+    const remainingMonths = months % 12;
+
+    let result = '';
+    if (years > 0) result += `${years} year and ${years > 1 ? '' : ''}`;
+    if (remainingMonths > 0 || years === 0) result += ` ${remainingMonths} month`;
+
+    document.getElementById(elementId).textContent = result.trim();
+  }
+
+  // From Feb 2020 + 7 bonus months
+  calculateExperienceWithBonus("2020-02-01", "total-exp", 7);
+</script>
+
+
 </body>
 
 
